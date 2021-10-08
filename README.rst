@@ -14,8 +14,8 @@ simple.
 Usage
 =====
 
-There is only 1 function for you to use, and that is `getgopt.Getopt()`. The function works *almost*
-the same way that the POSIX C ``getopt`` function works. Here is an example of it's usage:
+There is only 1 function for you to use, and that is ``getgopt.Getopt()``. The function works
+*almost* the same way that the POSIX C ``getopt`` function works. Here is an example of it's usage:
 
 .. code-block:: go
 
