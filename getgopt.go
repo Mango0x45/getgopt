@@ -77,7 +77,7 @@ func parseArgs(optstring string) {
  * returned. This makes it very easy to incorperate into a for/while loop.
  */
 func Getopt(argc int, argv []string, optstring string, optptr *byte) bool {
-	/* If we havem't parsed the optstring yet, parse it */
+	/* If we haven't parsed the optstring yet, parse it */
 	if !parsed {
 		parseArgs(optstring)
 		parsed = true
