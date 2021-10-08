@@ -1,4 +1,4 @@
-.. vi: tw=100
+.. vi: tw=100 noet
 
 Getgopt
 =======
@@ -19,40 +19,40 @@ There is only 1 function for you to use, and that is ``getgopt.Getopt()``. The f
 
 .. code-block:: go
 
-        package main
+	package main
 
-        import (
-                "fmt"
-                "os"
+	import (
+		"fmt"
+		"os"
 
-                "github.com/Mango0x45/getgopt"
-        )
+		"github.com/Mango0x45/getgopt"
+	)
 
-        func main() {
-                for opt := byte(0); getgopt.Getopt(len(os.Args), os.Args, ":a:bcd", &opt); {
-                        switch opt {
-                        case 'a':
-                                fmt.Printf("Parsed the -a flag with the argument '%s'\n",
-                                        getgopt.Optarg)
-                        case 'b':
-                                fmt.Println("Parsed the -b flag")
-                        case 'c':
-                                /* ... */
-                        case 'd':
-                                /* ... */
-                        case '?':
-                                fmt.Fprintf(os.Stderr, "Invalid flag '%c', read the manpage\n",
-                                        getgopt.Optopt)
-                                os.Exit(1)
-                        case ':':
-                                fmt.Fprintf(os.Stderr, "The flag '%c' requires an argument\n",
-                                        getgopt.Optopt)
-                                os.Exit(1)
-                        }
-                }
+	func main() {
+		for opt := byte(0); getgopt.Getopt(len(os.Args), os.Args, ":a:bcd", &opt); {
+			switch opt {
+			case 'a':
+				fmt.Printf("Parsed the -a flag with the argument '%s'\n",
+					getgopt.Optarg)
+			case 'b':
+				fmt.Println("Parsed the -b flag")
+			case 'c':
+				/* ... */
+			case 'd':
+				/* ... */
+			case '?':
+				fmt.Fprintf(os.Stderr, "Invalid flag '%c', read the manpage\n",
+					getgopt.Optopt)
+				os.Exit(1)
+			case ':':
+				fmt.Fprintf(os.Stderr, "The flag '%c' requires an argument\n",
+					getgopt.Optopt)
+				os.Exit(1)
+			}
+		}
 
-                fmt.Printf("The first non-option argument is '%s'\n", os.Args[getgopt.Optind])
-        }
+		fmt.Printf("The first non-option argument is '%s'\n", os.Args[getgopt.Optind])
+	}
 
 After parsing a flag the ``Getopt()`` function returns true if there are still more flags to parse,
 or false if there are none more. This means that we can use it in a ``for`` or ``while`` loop to
@@ -68,27 +68,33 @@ is ``':'`` and otherwise it will be ``'?'``.
 The *optstring* is a string passed as the 3rd argument to ``Getopt()`` which specified which flags
 you want to be able to handle. Each flag you want to handle is given as a single character in the
 string in any order. For example if you want to support the ``-a``, ``-b``, and ``-x`` flags you can
-do::
+do:
 
-        getgopt.Getopt(len(os.Args), os.Args, "abx", &opt)
-        /* or */
-        getgopt.Getopt(len(os.Args), os.Args, "bxa", &opt)
+.. code-block:: go
+
+	getgopt.Getopt(len(os.Args), os.Args, "abx", &opt)
+	/* or */
+	getgopt.Getopt(len(os.Args), os.Args, "bxa", &opt)
 
 If you want a flag to take an argument, you should suffix the character with a ``':'``. So using the
-above example, if we want the ``-b`` flag to take an argument, we could write::
+above example, if we want the ``-b`` flag to take an argument, we could write:
 
-        getgopt.Getopt(len(os.Args), os.Args, "ab:x", &opt)
+.. code-block:: go
+
+	getgopt.Getopt(len(os.Args), os.Args, "ab:x", &opt)
 
 Finally, by default the ``Getopt()`` function will print diagnostic error messages to standard
 output when the user fails to provide an argument to a flag that expects one or passes an invalid
 flag. If you would like to not have these diagnostics printed you can either prefix the optstring
 with ``':'`` or you can set the ``Opterr`` global variable to ``false``. Both of the following are
-equivalent::
+equivalent:
 
-        getgopt.Getopt(len(os.Args), os.Args, ":ab:x", &opt)
-        /* or */
-        getgopt.Opterr = false
-        getgopt.Getopt(len(os.Args), os.Args, "ab:x", &opt)
+.. code-block:: go
+
+	getgopt.Getopt(len(os.Args), os.Args, ":ab:x", &opt)
+	/* or */
+	getgopt.Opterr = false
+	getgopt.Getopt(len(os.Args), os.Args, "ab:x", &opt)
 
 There is a *slight* difference in behavior though which was explained above.
 
