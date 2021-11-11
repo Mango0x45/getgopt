@@ -23,7 +23,6 @@ Valid flag 'a' with arg 'testy test'" "$(./tests -x -a 'testy test')"
 compare "-xa with args" "Valid flag 'x'
 Valid flag 'a' with arg 'testy test'" "$(./tests -xa 'testy test')"
 compare "-ax with args" "Valid flag 'a' with arg 'x'" "$(./tests -ax 'testy test')"
-compare "-ax with args" "Valid flag 'a' with arg 'x'" "$(./tests -ax 'testy test')"
 compare "-x after --" "" "$(./tests -- -x)"
 compare "-a with args after --" "" "$(./tests -- -a testy test)"
 compare "-a with args then -x after --" "Valid flag 'a' with arg 'testy'" \
