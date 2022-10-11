@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Mango0x45/getgopt"
+	"git.thomasvoss.com/getgopt"
 )
 
 func main() {
