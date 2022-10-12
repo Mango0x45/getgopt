@@ -25,7 +25,7 @@ There is only 1 function for you to use, and that is ``getgopt.Getopt()``. The f
 		"fmt"
 		"os"
 
-		"github.com/Mango0x45/getgopt"
+		"git.thomasvoss.com/getgopt"
 	)
 
 	func main() {
